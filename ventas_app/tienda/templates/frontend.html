@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Ventas</title>
+    <!-- Enlazar el archivo CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+</head>
+<body>
+    <h1>Dashboard de Ventas</h1>
+    <div class="container">
+        <h2>Pocentaje de Utilidad por region</h2>
+        <div class="card-container">
+                <div class="card" id="north-card">
+                    <h3>North</h3>
+                    <p id="north-profit">0%</p>
+                </div>
+                <div class="card" id="south-card">
+                    <h3>South</h3>
+                    <p id="south-profit">0%</p>
+                </div>
+                <div class="card" id="west-card">
+                    <h3>West</h3>
+                    <p id="west-profit">0%</p>
+                </div>
+                <div class="card" id="central-card">
+                    <h3>Central</h3>
+                    <p id="central-profit">0%</p>
+                </div>
+                <div class="card" id="east-card">
+                    <h3>East</h3>
+                    <p id="east-profit">0%</p>
+                </div>
+        </div>
+        <h2>Pocentaje de Variacion de ventas por categoria (2017-2018)</h2>
+        <div class="container">
+            <div id="card-containerV" class="card-container">
+
+            </div>
+        </div>
+        <div class="filter-section">
+            <h2>Filtrar Ventas por Categoría</h2>
+            <form id="filterForm">
+                <label for="start_date">Fecha Inicio:</label>
+                <input type="date" id="start_date" required>
+                
+                <label for="end_date">Fecha Fin:</label>
+                <input type="date" id="end_date" required>
+                
+                <label for="category">Categoría:</label>
+                <input type="text" id="category">
+                
+                <button type="button" onclick="getFilteredData()">Aplicar Filtros</button>
+            </form>
+        </div>
+
+        <h2>Resultados del Filtro</h2>
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Categoría</th>
+                    <th>Total de Ventas</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="filter-section">
+            <h2>Top 10 Clientes por Categoría</h2>
+            <form id="top10Form">
+                <label for="top10_category">Categoría:</label>
+                <input type="text" id="top10_category">
+                <label for="top10_year">Año:</label>
+                <input type="number" id="top10_year" placeholder="Ingrese el año">
+                <button type="button" onclick="getTop10()">Ver Top 10 Clientes</button>
+            </form>
+        </div>
+
+        <h2>Top 10 Clientes</h2>
+        <table id="top10Table">
+            <thead>
+                <tr>
+                    <th>Nombre del Cliente</th>
+                    <th>Ciudad del Cliente</th>
+                    <th>Total de Ventas</th>
+                    <th>Total de Ganancias</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="filter-section">
+            <h2>Ventas Totales por Mes</h2>
+            <div class="container">
+                <form id="yearForm">
+                    <label for="year">Año:</label>
+                    <input type="number" id="year" placeholder="Ingrese el año" required>
+                    <label>Regiones:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="region" value="North"> North</label>
+                        <label><input type="checkbox" name="region" value="South"> South</label>
+                        <label><input type="checkbox" name="region" value="West"> West</label>
+                        <label><input type="checkbox" name="region" value="Central"> Central</label>
+                        <label><input type="checkbox" name="region" value="East"> East</label>
+                    </div>
+                    <button type="button" onclick="loadSalesByMonth()">Generar Gráfico</button>
+                </form>
+                
+                
+            </div>
+            <h2>Ventas totales por mes</h2>
+            <canvas id="salesChart" width="4000" height="2000"></canvas>
+        </table>
+        </div>
+    </div>
+
+    <!-- Enlazar el archivo JavaScript -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
