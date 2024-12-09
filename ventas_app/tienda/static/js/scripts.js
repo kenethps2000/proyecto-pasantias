@@ -46,6 +46,7 @@ function getTop10() {
                             <td>${row.city}</td>
                             <td>${row.total_sales}</td>
                             <td>${row.total_profit}</td>
+                            <td>${row.profit_percentage + '%'}</td>
                         </tr>
                     `;
                 });
@@ -194,8 +195,8 @@ function loadSalesVariation() {
 
                 card.innerHTML = `
                     <h3>${category}</h3>
-                    <p class="texto_Variacion" ><strong>Ventas 2018:</strong> $${sales_2018.toLocaleString()}</p>
-                    <p class="texto_Variacion"><strong>Ventas 2017:</strong> $${sales_2017.toLocaleString()}</p>
+                    <p><strong>Ventas 2018:</strong> $${sales_2018.toLocaleString()}</p>
+                    <p><strong>Ventas 2017:</strong> $${sales_2017.toLocaleString()}</p>
                     <p class="${variationClass}">
                         <strong>Variación:</strong> ${sales_variation_percentage !== "N/A" ? sales_variation_percentage + '%' : 'N/A'}
                     </p>

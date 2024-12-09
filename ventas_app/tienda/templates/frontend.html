@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
 </head>
 <body>
     <h1>Dashboard de Ventas</h1>
     <div class="container">
-        <h2>Pocentaje de Utilidad por region</h2>
-        <div class="card-container">
+        <section>
+            <h2>Pocentaje de Utilidad por Región</h2>
+            <div class="card-container">
                 <div class="card" id="north-card">
                     <h3>North</h3>
                     <p id="north-profit">0%</p>
@@ -36,14 +36,15 @@
                     <h3>East</h3>
                     <p id="east-profit">0%</p>
                 </div>
-        </div>
-        <h2>Pocentaje de Variacion de ventas por categoria (2017-2018)</h2>
-        <div class="container">
-            <div id="card-containerV" class="card-container">
-
             </div>
-        </div>
-        <div class="filter-section">
+        </section>
+
+        <section>
+            <h2>Pocentaje de Variación de Ventas por Categoría (2017-2018)</h2>
+            <div id="card-containerV" class="card-container"></div>
+        </section>
+
+        <section class="filter-section">
             <h2>Filtrar Ventas por Categoría</h2>
             <form id="filterForm">
                 <label for="start_date">Fecha Inicio:</label>
@@ -57,65 +58,72 @@
                 
                 <button type="button" onclick="getFilteredData()">Aplicar Filtros</button>
             </form>
-        </div>
+        </section>
 
-        <h2>Resultados del Filtro</h2>
-        <table id="resultsTable">
-            <thead>
-                <tr>
-                    <th>Categoría</th>
-                    <th>Total de Ventas</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <section>
+            <h2>Resultados del Filtro</h2>
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Total de Ventas</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
 
-        <div class="filter-section">
+        <section class="filter-section">
             <h2>Top 10 Clientes por Categoría</h2>
             <form id="top10Form">
                 <label for="top10_category">Categoría:</label>
                 <input type="text" id="top10_category">
+                
                 <label for="top10_year">Año:</label>
                 <input type="number" id="top10_year" placeholder="Ingrese el año">
+                
                 <button type="button" onclick="getTop10()">Ver Top 10 Clientes</button>
             </form>
-        </div>
+        </section>
 
-        <h2>Top 10 Clientes</h2>
-        <table id="top10Table">
-            <thead>
-                <tr>
-                    <th>Nombre del Cliente</th>
-                    <th>Ciudad del Cliente</th>
-                    <th>Total de Ventas</th>
-                    <th>Total de Ganancias</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <div class="filter-section">
+        <section>
+            <h2>Top 10 Clientes</h2>
+            <table id="top10Table">
+                <thead>
+                    <tr>
+                        <th>Nombre del Cliente</th>
+                        <th>Ciudad del Cliente</th>
+                        <th>Total de Ventas</th>
+                        <th>Total de Ganancias</th>
+                        <th>Porcentaje de Ganancias</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <section class="filter-section">
             <h2>Ventas Totales por Mes</h2>
-            <div class="container">
-                <form id="yearForm">
-                    <label for="year">Año:</label>
-                    <input type="number" id="year" placeholder="Ingrese el año" required>
-                    <label>Regiones:</label>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" name="region" value="North"> North</label>
-                        <label><input type="checkbox" name="region" value="South"> South</label>
-                        <label><input type="checkbox" name="region" value="West"> West</label>
-                        <label><input type="checkbox" name="region" value="Central"> Central</label>
-                        <label><input type="checkbox" name="region" value="East"> East</label>
-                    </div>
-                    <button type="button" onclick="loadSalesByMonth()">Generar Gráfico</button>
-                </form>
+            <form id="yearForm">
+                <label for="year">Año:</label>
+                <input type="number" id="year" placeholder="Ingrese el año" required>
                 
-                
-            </div>
-            <h2>Ventas totales por mes</h2>
+                <label>Regiones:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="region" value="North"> North</label>
+                    <label><input type="checkbox" name="region" value="South"> South</label>
+                    <label><input type="checkbox" name="region" value="West"> West</label>
+                    <label><input type="checkbox" name="region" value="Central"> Central</label>
+                    <label><input type="checkbox" name="region" value="East"> East</label>
+                </div>
+                <button type="button" onclick="loadSalesByMonth()">Generar Gráfico</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Ventas Totales por Mes</h2>
             <canvas id="salesChart" width="4000" height="2000"></canvas>
-        </table>
-        </div>
+        </section>
     </div>
 
     <!-- Enlazar el archivo JavaScript -->

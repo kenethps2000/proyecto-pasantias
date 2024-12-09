@@ -38,8 +38,13 @@ def top10(request):
     category = request.GET.get('category')
     year = request.GET.get('year')
     
-    # Consulta base
-    sql_query = """SELECT Customer_Name, city, SUM(sales) AS total_sales, SUM(profit) AS total_profit 
+    # Consulta base con el cálculo de porcentaje de ganancia
+    sql_query = """SELECT 
+                       Customer_Name, 
+                       city, 
+                       SUM(sales) AS total_sales, 
+                       ROUND(SUM(profit),2) AS total_profit,
+                       ROUND(((SUM(profit) / NULLIF(SUM(sales), 0)) * 100), 0) AS profitwin
                    FROM orders"""
     
     # Lista de parámetros y condiciones WHERE
@@ -72,7 +77,8 @@ def top10(request):
             "Customer_Name": row[0],
             "city": row[1],
             "total_sales": row[2],
-            "total_profit": row[3]
+            "total_profit": row[3],
+            "profit_percentage": row[4] if row[4] is not None else 0
         } 
         for row in rows
     ]

@@ -28,7 +28,7 @@ h2 {
 
 /* Contenedor principal */
 .container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 40px auto;
     padding: 20px;
     background-color: #fff;
@@ -36,14 +36,58 @@ h2 {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Contenedor de tarjetas */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 
-/* Formularios */
+/* Estilo de cada tarjeta */
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    font-size: 1.2em;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 1.2em;
+    color: #007BFF;
+}
+
+.card p {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Estilo de los valores de porcentaje */
+.card p {
+    font-size: 2em;
+    color: #0056b3;  /* Color azul para los porcentajes */
+}
+
+/* Formulario */
 form {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     align-items: center;
     margin-bottom: 20px;
+    justify-content: space-between;
 }
 
 label {
@@ -54,7 +98,8 @@ label {
 }
 
 input[type="date"],
-input[type="text"] {
+input[type="text"],
+input[type="number"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -101,7 +146,6 @@ button:active {
     margin-bottom: 30px;
 }
 
-
 /* Tablas */
 table {
     width: 100%;
@@ -133,95 +177,27 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Mensajes de error o información */
-.error-message {
-    color: #d9534f;
-    font-weight: bold;
-    text-align: center;
-}
+/* Responsividad para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.info-message {
-    color: #5bc0de;
-    font-weight: bold;
-    text-align: center;
-}
-canvas {
-    display: block;
-    margin: auto;
-    max-width: 100%;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-}
-.checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+    .card {
+        width: 80%;
+        max-width: 400px;
+    }
 
-.checkbox-group label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-weight: normal;
-}
+    .checkbox-group {
+        flex-direction: column;
+    }
 
-/* Canvas */
-canvas {
-    display: block;
-    margin: auto;
-    max-width: 100%;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-}
-.card-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
+    table {
+        font-size: 0.9em;
+    }
 
-/* Estilo de cada tarjeta */
-.card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 150px;
-    text-align: center;
-    font-size: 1.2em;
-    transition: transform 0.3s ease-in-out;
-}
-
-.card h3 {
-    font-size: 1.2em;
-    color: #007BFF;
-}
-
-.card p {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-/* Estilo de los valores de porcentaje */
-.card p {
-    font-size: 2em;
-    color: #0056b3;  /* Color azul para los porcentajes */
-}
-
-p.texto_Variacion{
-    font-size: 1em;
-}
-
-p.variation{
-    font-size: 1em;
+    button {
+        max-width: 100%;
+    }
 }
