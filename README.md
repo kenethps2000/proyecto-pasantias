@@ -32,10 +32,11 @@ Puedes descargarlo desde MySQL Downloads.
 
 ### **Clonar el Repositorio**
 	> git clone https://github.com/kenethps2000/proyecto-pasantias.git 
-	> cd dashboard-ventas
+	> cd proyecto-pasantias
 
 ### **Activar el entorno virtual**
 	> .\env\Scripts\activate
+ 	> cd ventas_app
 
 ### **Configurar la Base de Datos**
 Edita el archivo `settings.py` para configurar tu base de datos MySQL:
