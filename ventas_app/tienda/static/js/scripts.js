@@ -2,9 +2,9 @@
 function getFilteredData() {
     const startDate = document.getElementById('start_date').value;
     const endDate = document.getElementById('end_date').value;
-    const category = document.getElementById('category').value;
+    const region = document.getElementById('category').value;
 
-    fetch(`/filtros/?start_date=${startDate}&end_date=${endDate}&category=${encodeURIComponent(category)}`)
+    fetch(`/filtros/?start_date=${startDate}&end_date=${endDate}&region=${encodeURIComponent(region)}`)
         .then(response => response.json())
         .then(data => {
             const tableBody = document.querySelector('#resultsTable tbody');
@@ -164,7 +164,7 @@ function loadProfitIndicators() {
             // Mapear los datos y actualizar las tarjetas
             data.forEach(entry => {
                 const region = entry.region;
-                const profitPercentage = entry.total_profit_percentage.toFixed(2) + '%';
+                const profitPercentage = entry.total_profit_percentage + '%';
                 
                 // Actualizar el contenido de cada tarjeta
                 document.getElementById(region.toLowerCase() + '-profit').innerText = profitPercentage;

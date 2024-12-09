@@ -9,7 +9,7 @@ def filtros(request):
     # Obtener parámetros de filtro desde la URL
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
-    category = request.GET.get('category')
+    region = request.GET.get('region')
 
     # Consulta SQL con filtros dinámicos
     sql_query = """
@@ -19,9 +19,9 @@ def filtros(request):
     """
     params = [start_date, end_date]
 
-    if category:
-        sql_query += " AND category = %s"
-        params.append(category)
+    if region:
+        sql_query += " AND region = %s"
+        params.append(region)
 
     sql_query += " GROUP BY category ORDER BY total_sales DESC"
 
@@ -124,7 +124,7 @@ def sales_by_month(request):
 
 def utilidad(request):
 
-    sql_query = """SELECT region, (SUM(profit) / SUM(sales)) * 100 AS total_profit_percentage FROM orders group by region;"""
+    sql_query = """SELECT region, round(((SUM(profit) / SUM(sales)) * 100),0) AS total_profit_percentage FROM orders group by region;"""
     with connection.cursor() as cursor:
         cursor.execute(sql_query)
         rows = cursor.fetchall()
@@ -161,7 +161,7 @@ def sales_variation(request):
                     ELSE ((MAX(CASE WHEN year = 2018 THEN total_sales END) - 
                            MAX(CASE WHEN year = 2017 THEN total_sales END)) / 
                            MAX(CASE WHEN year = 2017 THEN total_sales END)) * 100
-                END, 2
+                END, 0
             ) AS sales_variation_percentage
         FROM 
             yearly_sales
